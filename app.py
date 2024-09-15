@@ -4,7 +4,7 @@ import os
 
 def install_requirements():
     try:
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r', 'requirement.txt'])
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install','--user','-r', 'requirement.txt'])
     except subprocess.CalledProcessError as e:
         print(f"An error occurred while installing packages: {e}")
         sys.exit(1)
