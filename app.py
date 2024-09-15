@@ -1,4 +1,17 @@
-pip install tensorflow
+import subprocess
+import sys
+import os
+
+def install_requirements():
+    try:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r', 'requirement.txt'])
+    except subprocess.CalledProcessError as e:
+        print(f"An error occurred while installing packages: {e}")
+        sys.exit(1)
+
+# Call the function to install requirement
+install_requirements()
+
 
 import streamlit as st
 import numpy as np
