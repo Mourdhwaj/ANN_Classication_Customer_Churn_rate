@@ -2,15 +2,28 @@ import subprocess
 import sys
 import os
 
-def install_requirements():
+def install_tensorflow():
     try:
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install','--user','-r', 'requirement.txt'])
+        # Create a virtual environment
+        subprocess.check_call([sys.executable, '-m', 'venv', 'myenv'])
+        
+        # Activate the virtual environment
+        if os.name == 'nt':  # Windows
+            activate_script = os.path.join('myenv', 'Scripts', 'activate')
+        else:  # Linux/Mac
+            activate_script = os.path.join('myenv', 'bin', 'activate')
+        
+        # Install TensorFlow within the virtual environment
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'tensorflow'])
+        
+        print("TensorFlow installed successfully.")
     except subprocess.CalledProcessError as e:
-        print(f"An error occurred while installing packages: {e}")
+        print(f"An error occurred while installing TensorFlow: {e}")
         sys.exit(1)
 
-# Call the function to install requirement
-install_requirements()
+# Call the function to install TensorFlow
+install_tensorflow()
+
 
 
 import streamlit as st
